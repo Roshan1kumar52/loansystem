@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Login & Signup Form</title>
+    <link rel="stylesheet" href="static/style.css" />
+  </head>
+  <body>
+    <section class="wrapper">
+      <div class="form signup">
+        <header>Signup</header>
+        <form action="{% url 'loanapp:sign' %}" method ="POST" value="Signup" >
+          {% csrf_token %}
+          <input type="text" id="fname" name="fname" placeholder="fname" required />
+          <input type="text" id="lname" name="lname" placeholder="lname" required />
+          <input type="text"  id="Username" name="Username"placeholder="Username" required />
+          <input type="email"id ="email"name="email" placeholder="email" required />
+          <input type="password" id="psw"name="psw"placeholder="psw" required />
+          <input type="submit" name="Signup" value="Signup" />
+        </form>
+      </div>
+
+      <div class="form login">
+        <header>Login</header>
+        <form method="POST">
+          {% csrf_token %}
+          <input type="text"id="email1" name="email1"placeholder="Email address" required />
+          <input type="password" id="pwd1"  name="pwd1" placeholder="Password" required />
+          <a href="forget">Forgot password?</a>
+          <input type="submit" name="Login",value="Login" />
+        </form>
+      </div>
+      {% if messs %}
+        <div class="message">{{ messs }}</div>
+      {% endif %}
+
+      <script>
+        const wrapper = document.querySelector(".wrapper"),
+          signupHeader = document.querySelector(".signup header"),
+          loginHeader = document.querySelector(".login header");
+
+        loginHeader.addEventListener("click", () => {
+          wrapper.classList.add("active");
+        });
+        signupHeader.addEventListener("click", () => {
+          wrapper.classList.remove("active");
+        });
+      </script>
+    </section>
+  </body>
+</html>

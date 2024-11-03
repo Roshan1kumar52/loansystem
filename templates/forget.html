@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="static/style.css" />
+</head>
+<body>
+    <section class="wrapper">
+        <div class="form forgot-password">
+            <header>Forgot Password</header>
+            <form action="{% url 'loanapp:forget' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" id="username" name="username" placeholder="USERNAME" required />
+                <input type="password" id="psw" name="psw" placeholder="NEW PASSWORD" required />
+
+                <input type="submit" value="Reset Password" />
+
+            </form>
+            
+            {% if messag %}
+                <div class="message">{{ messag }}</div>
+            {% endif %}
+
+            
+
+            
+            <p>Remembered your password? <a href="{% url 'loanapp:sign' %}">Login here</a></p>
+        </div>
+    </section>
+</body>
+</html>
